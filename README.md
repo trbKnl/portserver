@@ -16,3 +16,11 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+## Notes: deviations from Next
+
+  * Added: phx-update="ignore" in React component 
+  * Upgraded to webpack 5 with changed bare minimum build config
+  * Changed `port.js` to handle new sytnax for webworkers
+  * Configured Plug.Static differently 
+
