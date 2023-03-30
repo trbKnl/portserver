@@ -1,5 +1,6 @@
 defmodule PortserverWeb.Router do
   use PortserverWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -20,7 +21,8 @@ defmodule PortserverWeb.Router do
     live "/:id/:participant", PortPage
   end
 
-  scope "/", PortserverWeb do
+  scope "/", PortserverWeb,
+    layout: {PortserverWeb.Layouts, :app} do
     pipe_through :browser
 
     get "/", PageController, :home

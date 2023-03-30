@@ -3,29 +3,29 @@ import Assembly from "port/dist/framework/assembly";
 import { isCommandSystemDonate } from "port/dist/framework/types/commands";
 
 
-
 // Webpack will make sure the assets below can be served from root
 import "port/dist/port-0.0.0-py3-none-any.whl";
 import "port/dist/styles.css";
-//import "port/dist/framework/processing/py_worker.js";
+import "port/dist/framework/processing/py_worker.js";
 
 export const Port = {
+
   mounted() {
-    console.log("CREATING WORKER")
-    const worker = new Worker(new URL("port/dist/framework/processing/py_worker.js", import.meta.url));
-    const container = document.getElementById(this.el.id);
-    console.log(`CONTAINER ID: ${container}`)
-    const locale = this.el.dataset.locale;
-    console.log(`LOCALE: ${locale}`)
-    // const participant = this.el.dataset.participant;
-    this.assembly = new Assembly(worker, this);
-    this.assembly.visualisationEngine.start(container, locale);
-    this.assembly.processingEngine.start();
+    this.startPort()
   },
 
   destroyed() {
-    //this.assembly.visualisationEngine.destroyed();
-    console.log("DESTROYED");
+    this.assembly.visualisationEngine.terminate();
+    this.assembly.processingEngine.terminate();
+  },
+
+  beforeUpdate() {
+    this.assembly.processingEngine.terminate();
+    this.assembly.visualisationEngine.terminate();
+  },
+
+  updated() {
+    this.startPort()
   },
 
   send(command) {
@@ -44,4 +44,14 @@ export const Port = {
     );
     this.pushEvent("donate", command);
   },
+
+  startPort() {
+    const worker = new Worker(new URL("port/dist/framework/processing/py_worker.js", import.meta.url));
+    const container = document.getElementById(this.el.id);
+    const locale = this.el.dataset.locale;
+    // const participant = this.el.dataset.participant;
+    this.assembly = new Assembly(worker, this);
+    this.assembly.visualisationEngine.start(container, locale);
+    this.assembly.processingEngine.start();
+  }
 };

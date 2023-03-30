@@ -29,8 +29,8 @@ config :portserver, PortserverWeb.Endpoint,
 config :portserver, Portserver.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
-#config :esbuild,
-#  version: "0.14.41",
+config :esbuild,
+  version: "0.14.41"
 #  default: [
 #    args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --loader:.svg=file --loader:.whl=file),
 #    cd: Path.expand("../assets", __DIR__),
