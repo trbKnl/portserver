@@ -18,7 +18,7 @@ defmodule PortserverWeb.Router do
   scope "/port", PortserverWeb do
     pipe_through :browser
 
-    live "/:id/:participant", PortPage
+    live "/:id/:participant", Live.PortPage
   end
 
   scope "/", PortserverWeb,

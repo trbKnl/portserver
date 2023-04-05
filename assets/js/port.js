@@ -12,6 +12,7 @@ export const Port = {
 
   mounted() {
     this.startPort()
+    this.loadingDone()
   },
 
   destroyed() {
@@ -36,6 +37,11 @@ export const Port = {
         "[System] received unknown command: " + JSON.stringify(command)
       );
     }
+  },
+
+  loadingDone() {
+    console.log("[System] port loading done")
+    this.pushEvent("port_loading_done")
   },
 
   handleDonation(command) {

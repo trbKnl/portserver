@@ -17,9 +17,10 @@ defmodule Portserver.Application do
       # Start Finch
       {Finch, name: Portserver.Finch},
       # Start the Endpoint (http/https)
-      PortserverWeb.Endpoint
+      PortserverWeb.Endpoint,
       # Start a worker by calling: Portserver.Worker.start_link(arg)
       # {Portserver.Worker, arg}
+      Portserver.StorageBackend.LocalStorageSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

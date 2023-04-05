@@ -112,4 +112,16 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
 end
+
+# Storage backend configuration
+config :portserver, :local_storage_config,
+  storage_directory: "./donated_data",
+  poolboy_config: [
+      name: {:local, :local_storage_worker},
+      worker_module: Portserver.StorageBackend.LocalStorageWorker,
+      size: 5,
+      max_overflow: 0
+  ]
+
