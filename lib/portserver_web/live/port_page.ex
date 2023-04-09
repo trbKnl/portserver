@@ -19,12 +19,7 @@ defmodule PortserverWeb.Live.PortPage do
         socket
       ) do
     LocalStorage.store(socket.assigns.participant, key, json_string)
-
-    {
-      :noreply,
-      # |> store_results(key, json_string)
-      socket
-    }
+    {:noreply, socket}
   end
 
   @impl true
@@ -47,7 +42,7 @@ defmodule PortserverWeb.Live.PortPage do
   def render(assigns) do
     ~H"""
     <header class="flex items-center justify-between px-4 py-3 header border-b border-gray-200">
-      <div class="text-xl font-bold">Port</div>
+      <img src="/assets/port_wide.svg" alt="Port">
       <div>
         <.live_component
           module={PortserverWeb.Live.Components.LocaleChangeFlag}

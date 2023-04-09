@@ -30,19 +30,6 @@ let Hooks = {
   Port
 }
 
-//Hooks.PhoneNumber = {
-//  mounted() {
-//    this.el.addEventListener("input", e => {
-//      console.log("Bertje")
-//      console.log(this.el.value)
-//      let match = this.el.value.replace(/\D/g, "").match(/^(\d{3})(\d{3})(\d{4})$/)
-//      if(match) {
-//        this.el.value = `${match[1]}-${match[2]}-${match[3]}`
-//      }
-//    })
-//  }
-//}
-
 let liveSocket = new LiveSocket("/live", Socket, {
   params: {
     _csrf_token: csrfToken,
@@ -64,8 +51,6 @@ liveSocket.connect()
 window.liveSocket = liveSocket
 
 window.addEventListener("phx:js-exec", ({detail}) => {
-    console.log("HELLO")
-
     document.querySelectorAll(detail.to).forEach(el => {
         liveSocket.execJS(el, el.getAttribute(detail.attr))
     })
