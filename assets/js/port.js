@@ -55,7 +55,6 @@ export const Port = {
     const worker = new Worker(new URL("port/dist/framework/processing/py_worker.js", import.meta.url));
     const container = document.getElementById(this.el.id);
     const locale = this.el.dataset.locale;
-    // const participant = this.el.dataset.participant;
     this.assembly = new Assembly(worker, this);
     this.assembly.visualisationEngine.start(container, locale);
     this.assembly.processingEngine.start();

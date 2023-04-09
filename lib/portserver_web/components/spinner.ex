@@ -1,10 +1,10 @@
-defmodule PortserverWeb.Live.Components.Spinner do
-  use Phoenix.LiveComponent
+defmodule PortserverWeb.Components.Spinner do
+  use Phoenix.Component
   alias Phoenix.LiveView.JS
 
   attr :id, :string, required: true
 
-  def render(assigns) do
+  def spinner(assigns) do
     ~H"""
     <div
       class="w-1/2 h-1/2 absolute top-1/4 left-1/4"

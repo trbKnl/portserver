@@ -3,7 +3,6 @@ defmodule PortserverWeb.Live.PortPage do
 
   alias Portserver.StorageBackend.LocalStorage
 
-  @impl true
   def mount(
         %{"id" => id, "participant" => participant} = _params,
         _session,
@@ -12,7 +11,10 @@ defmodule PortserverWeb.Live.PortPage do
     {:ok, assign(socket, id: id, locale: "nl", participant: participant)}
   end
 
-  @impl true
+  def handle_info({:change_locale, locale}, socket) do
+    {:noreply, assign(socket, locale: locale)}
+  end
+
   def handle_event(
         "donate",
         %{"__type__" => "CommandSystemDonate", "key" => key, "json_string" => json_string},
@@ -22,7 +24,7 @@ defmodule PortserverWeb.Live.PortPage do
     {:noreply, socket}
   end
 
-  @impl true
+  # This port_loading_done is emitted by loadingDone() in port.js
   def handle_event("port_loading_done", _value, socket) do
     {
       :noreply,
@@ -33,20 +35,24 @@ defmodule PortserverWeb.Live.PortPage do
     }
   end
 
-  @impl true
-  def handle_info({:change_locale, locale}, socket) do
-    {:noreply, assign(socket, locale: locale)}
+  def handle_event("change_locale", _value, socket) do
+    new_locale = case socket.assigns.locale do
+        "en" -> "nl"
+        "nl" -> "en"
+        _ -> "en"
+      end
+    {:noreply, assign(socket, locale: new_locale)}
   end
 
-  @impl true
+  attr :locale, :string, required: true 
+  attr :participant, :string, required: true, doc: "a unique participant id"
+
   def render(assigns) do
     ~H"""
     <header class="flex items-center justify-between px-4 py-3 header border-b border-gray-200">
-      <img src="/assets/port_wide.svg" alt="Port">
+      <img src="/assets/port_wide.svg" alt="Port" />
       <div>
-        <.live_component
-          module={PortserverWeb.Live.Components.LocaleChangeFlag}
-          id="locale_change_flag"
+        <PortserverWeb.Components.LocaleChangeFlag.change_locale
           locale={@locale}
         />
       </div>
@@ -61,42 +67,15 @@ defmodule PortserverWeb.Live.PortPage do
           data-locale={@locale}
           data-participant={@participant}
         />
-        <.live_component module={PortserverWeb.Live.Components.Spinner} id="port_loader" />
+        <PortserverWeb.Components.Spinner.spinner id="port_loader" />
       </div>
     </div>
     """
   end
 end
 
-#  @impl true
-#  def render(assigns) do
-#    ~H"""
-#      <h1> YOLO </h1>
-#      <input type="text" name="user[phone_number]" id="user-phone-number" phx-hook="PhoneNumber"/>
-#    """
-#  end
-
-
-#  def store_results(
-#        %{assigns: %{session: session, remote_ip: remote_ip, vm: %{storage: storage_key} = vm}} =
-#          socket,
-#        key,
-#        json_string
-#      )
-#      when is_binary(json_string) do
-#    state = Map.merge(session, %{"key" => key})
-#    packet_size = String.length(json_string)
-#
-#    with :granted <- Rate.Public.request_permission(:azure_blob, remote_ip, packet_size) do
-#      %{
-#        storage_key: storage_key,
-#        state: state,
-#        vm: vm,
-#        data: json_string
-#      }
-#      |> DataDonation.Delivery.new()
-#      |> Oban.insert()
-#    end
-#
-#    socket
-#  end
+#        <.live_component
+#          module={PortserverWeb.Live.Components.LocaleChangeFlag}
+#          id="locale_change_flag"
+#          locale={@locale}
+#        />
