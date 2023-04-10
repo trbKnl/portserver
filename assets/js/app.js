@@ -56,3 +56,17 @@ window.addEventListener("phx:js-exec", ({detail}) => {
     })
   })
 
+window.addEventListener(`phx:download`, (event) => {
+  event.detail.uris.forEach((uri) => {
+    let a = document.createElement("a");
+    a.setAttribute("href", uri);
+    //a.setAttribute('download', uri);
+    a.setAttribute('download', '');
+    a.setAttribute('target', '_blank');
+    //a.style.visibility = 'hidden';
+    //a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click()
+    document.body.removeChild(a);
+  });
+})

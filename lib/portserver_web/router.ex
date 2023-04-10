@@ -15,10 +15,12 @@ defmodule PortserverWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/port", PortserverWeb do
+  scope "/", PortserverWeb do
     pipe_through :browser
 
-    live "/:id/:participant", Live.PortPage
+    live "/port/:id/:participant", PortLive
+    live "/admin", AdminLive
+    get "/data/:filename", DownloadController, :download
   end
 
   scope "/", PortserverWeb,
