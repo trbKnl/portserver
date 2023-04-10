@@ -83,3 +83,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+# Database storage backend configuration 
+config :portserver, :database_storage_config,
+  cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="

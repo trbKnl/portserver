@@ -115,7 +115,7 @@ if config_env() == :prod do
 
 end
 
-# Storage backend configuration
+# Local storage backend configuration
 config :portserver, :local_storage_config,
   storage_directory: "./donated_data",
   poolboy_config: [
@@ -125,3 +125,7 @@ config :portserver, :local_storage_config,
       max_overflow: 0
   ]
 
+
+# Database storage backend configuration 
+config :portserver, :local_storage_config,
+  cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="
