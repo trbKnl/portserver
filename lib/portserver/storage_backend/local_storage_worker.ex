@@ -8,7 +8,6 @@ defmodule Portserver.StorageBackend.LocalStorageWorker do
 
   @impl true
   def init(storage_dir) do
-    Logger.info("Starting local storage worker #{inspect self()}")
     {:ok, storage_dir}
   end
 
