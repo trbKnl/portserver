@@ -8,7 +8,7 @@ defmodule PortserverWeb.AdminLive do
     </header>
     <div class="max-w-screen-lg mx-auto w-70">
       <div class="mt-4">
-        <h2 class="text-xl font-bold border-b-2">Export donated data</h2>
+        <h2 class="text-xl font-bold border-gray-200 border-b-2">Export donated data</h2>
         <.button class="px-2 py-1 mt-1" phx-click="export_database">Export</.button>
       </div>
     </div>
