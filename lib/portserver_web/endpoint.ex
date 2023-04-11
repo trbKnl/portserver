@@ -21,7 +21,7 @@ defmodule PortserverWeb.Endpoint do
     at: "/",
     from: :portserver,
     gzip: false,
-    only: ~w(css fonts images js assets favicon.ico robots.txt port-0.0.0-py3-none-any.whl)
+    only: PortserverWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
