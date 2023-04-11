@@ -87,5 +87,4 @@ defmodule Portserver.StorageBackend.DatabaseStorage do
   def create_uri(filename) do
     Path.join(@folder, filename)
   end
-
 end
