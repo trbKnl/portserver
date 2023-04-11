@@ -3,14 +3,9 @@ defmodule PortserverWeb.AdminLive do
 
   def render(assigns) do
     ~H"""
-    <header class="flex items-center justify-between px-4 py-3 header border-b border-gray-200">
-      <div class="text-xl font-bold">Admin panel</div>
-    </header>
-    <div class="max-w-screen-lg mx-auto w-70">
-      <div class="mt-4">
-        <h2 class="text-xl font-bold border-gray-200 border-b-2">Export donated data</h2>
-        <.button class="px-2 py-1 mt-1" phx-click="export_database">Export</.button>
-      </div>
+    <div class="mt-4">
+      <h2 class="text-xl font-bold border-gray-200 border-b-2">Export donated data</h2>
+      <.button class="px-2 py-1 mt-1" phx-click="export_database">Export</.button>
     </div>
     """
   end
@@ -23,6 +18,7 @@ defmodule PortserverWeb.AdminLive do
   end
 
   def mount(_params, _session, socket) do
-    {:ok, socket, layout: false}
+    #{:ok, socket, layout: false}
+    {:ok, socket}
   end
 end

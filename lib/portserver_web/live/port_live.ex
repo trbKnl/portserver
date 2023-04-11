@@ -3,14 +3,6 @@ defmodule PortserverWeb.PortLive do
 
   alias Portserver.StorageBackend.LocalStorage
 
-  def mount(
-        %{"id" => id, "participant" => participant} = _params,
-        _session,
-        socket
-      ) do
-    {:ok, assign(socket, id: id, locale: "nl", participant: participant)}
-  end
-
   def handle_info({:change_locale, locale}, socket) do
     {:noreply, assign(socket, locale: locale)}
   end
@@ -24,7 +16,7 @@ defmodule PortserverWeb.PortLive do
         },
         socket
       ) do
-    LocalStorage.store(socket.assigns.participant, key, json_string)
+    LocalStorage.store(socket.assigns.participant_id, key, json_string)
     {:noreply, socket}
   end
 
@@ -51,7 +43,7 @@ defmodule PortserverWeb.PortLive do
   end
 
   attr :locale, :string, required: true
-  attr :participant, :string, required: true, doc: "a unique participant id"
+  attr :participant_id, :string, required: true, doc: "a unique participant id"
 
   def render(assigns) do
     ~H"""
@@ -69,17 +61,19 @@ defmodule PortserverWeb.PortLive do
           id="port"
           phx-hook="Port"
           data-locale={@locale}
-          data-participant={@participant}
+          data-participant={@participant_id}
         />
         <PortserverWeb.Components.Spinner.spinner id="port_loader" />
       </div>
     </div>
     """
   end
-end
 
-#        <.live_component
-#          module={PortserverWeb.Live.Components.LocaleChangeFlag}
-#          id="locale_change_flag"
-#          locale={@locale}
-#        />
+  def mount(
+        %{"participant_id" => participant_id} = _params,
+        _session,
+        socket
+      ) do
+    {:ok, assign(socket, locale: "nl", participant_id: participant_id), layout: false}
+  end
+end
