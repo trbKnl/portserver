@@ -1,5 +1,5 @@
 defmodule Mix.Tasks.BuildFrontend do
-  @moduledoc "Builds frontend"
+  @moduledoc "This task runs the builds the frontend with npm"
   @shortdoc "Build frontend"
   use Mix.Task
   require Logger
@@ -11,7 +11,7 @@ defmodule Mix.Tasks.BuildFrontend do
     System.cmd("npm", ["install", "--quiet"], cd: @assets)
 
     Logger.info("Building frontend with Webpack")
-    System.cmd("npm", ["build"], cd: @assets)
+    System.cmd("npm", ["run", "build"], cd: @assets)
 
     Logger.info("Frontend build done")
   end

@@ -1,5 +1,6 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -15,7 +16,8 @@ module.exports = {
     optimization: {
       minimize: true,
       minimizer: [
-        new TerserPlugin({parallel: true} )
+        new TerserPlugin({parallel: true}),
+        new CssMinimizerPlugin(),
       ]
     },
     module: {
@@ -33,7 +35,7 @@ module.exports = {
           }
         },
         {
-          test: /\.css$/,
+          test: /\.css(\?.*)?$/i,
           use: ['style-loader', 'css-loader'],
         },
         {
