@@ -27,7 +27,8 @@ portserver-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/hero_icons/*
-/priv/static/*
+
+/priv/static/assets/js/*
 
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json
@@ -126,3 +127,8 @@ lerna-debug.log
 Thumbs.db
 .donated_data/*
 donated_data/
+
+.data/*
+data/
+
+
