@@ -11,8 +11,6 @@ module.exports = {
       filename: "[name].js",
       path: path.resolve(__dirname, "../priv/static/js"),
       publicPath: "/js/",
-      //filename: "[name].js",
-      //path: path.resolve(__dirname, "../priv/static"),
     },
     optimization: {
     minimizer: [
@@ -62,14 +60,5 @@ module.exports = {
       new MiniCssExtractPlugin({
         filename: "../assets/[name].css"
       }),
-    //  new MiniCssExtractPlugin(),
-    //  new CopyPlugin({
-    //    patterns: [
-    //      { 
-    //        from: "./node_modules/port/dist/styles.css", 
-    //        to: path.resolve(__dirname, "../priv/static/assets"),
-    //      },
-    //  ],
-    //}),
     ],
 }
