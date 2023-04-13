@@ -1,5 +1,5 @@
 defmodule PortserverWeb.Components.LocaleChangeFlag do
-  use Phoenix.Component
+  use PortserverWeb, :html
 
   attr :locale, :string, required: true
 
@@ -16,8 +16,8 @@ defmodule PortserverWeb.Components.LocaleChangeFlag do
 
   defp flag(locale) do
     case locale do
-      "en" -> {"/assets/gb.svg", "English"}
-      "nl" -> {"/assets/nl.svg", "Nederlands"}
+      "en" -> {~p"/icons/gb.svg", "English"}
+      "nl" -> {~p"/icons/nl.svg", "Nederlands"}
       _ -> flag("en")
     end
   end

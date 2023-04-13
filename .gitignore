@@ -133,3 +133,6 @@ donated_data/
 data/*
 
 assets/package-lock.json
+
+# ignore build gz assets
+*.gz

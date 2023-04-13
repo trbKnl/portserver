@@ -1,10 +1,11 @@
 const path = require("path");
-const TerserPlugin = require("terser-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-      app: "./js/app.js",
+      app:"./js/app.js"
     },
     output: {
       filename: "[name].js",
@@ -14,12 +15,12 @@ module.exports = {
       //path: path.resolve(__dirname, "../priv/static"),
     },
     optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({parallel: true}),
-        new CssMinimizerPlugin(),
-      ]
-    },
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
     module: {
       rules: [
         {
@@ -35,8 +36,12 @@ module.exports = {
           }
         },
         {
-          test: /\.css(\?.*)?$/i,
-          use: ['style-loader', 'css-loader'],
+          test: /\.css$/i,
+          use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            "postcss-loader",
+          ],
         },
         {
           test: /\.whl$/,
@@ -53,4 +58,18 @@ module.exports = {
         },
       ],
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: "../assets/[name].css"
+      }),
+    //  new MiniCssExtractPlugin(),
+    //  new CopyPlugin({
+    //    patterns: [
+    //      { 
+    //        from: "./node_modules/port/dist/styles.css", 
+    //        to: path.resolve(__dirname, "../priv/static/assets"),
+    //      },
+    //  ],
+    //}),
+    ],
 }

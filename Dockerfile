@@ -59,15 +59,11 @@ RUN mkdir config
 COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
-COPY lib lib
-
-COPY priv priv
-
-COPY assets assets
+COPY . .
 
 # Build frontend
 RUN mix build_frontend
-RUN mix assets.deploy
+RUN mix phx.digest
 
 # Compile the release
 RUN mix compile

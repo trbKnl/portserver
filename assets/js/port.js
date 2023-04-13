@@ -2,10 +2,10 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import Assembly from "port/dist/framework/assembly";
 import { isCommandSystemDonate } from "port/dist/framework/types/commands";
 
+import "port/dist/styles.css";
 
 // Webpack will make sure the assets below can be served from root
 import "port/dist/port-0.0.0-py3-none-any.whl";
-import "port/dist/styles.css";
 import "port/dist/framework/processing/py_worker.js";
 
 export const Port = {
