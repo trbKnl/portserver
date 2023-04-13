@@ -26,8 +26,6 @@ erl_crash.dump
 portserver-*.tar
 
 # Ignore assets that are produced by build tools.
-/priv/hero_icons/*
-
 /priv/static/assets/*
 /priv/static/js/*
 /priv/static/port*
