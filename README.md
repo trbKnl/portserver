@@ -24,3 +24,9 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Changed `port.js` to handle new sytnax for webworkers
   * Configured Plug.Static differently 
 
+
+| SECRET_KEY_BASE |
+| DB_USER |
+| DB_PASSWORD |
+| DB_HOST |
+| DB_NAME |

@@ -87,3 +87,8 @@ config :swoosh, :api_client, false
 # Database storage backend configuration 
 config :portserver, :database_storage_config,
   cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="
+
+# Portserver specific configuration
+# Local storage backend configuration
+config :portserver, :local_storage_config,
+  storage_directory: "./donated_data"

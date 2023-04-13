@@ -4,15 +4,19 @@ defmodule Mix.Tasks.BuildFrontend do
   use Mix.Task
   require Logger
 
-  @assets "./assets"
+  @assets "assets"
 
   def run(_) do
     Logger.info("Installing NPM packages")
-    System.cmd("npm", ["install", "--quiet"], cd: @assets)
+    System.cmd("npm", ["install", "--quiet"], cd: assets_dir())
 
     Logger.info("Building frontend with Webpack")
-    System.cmd("npm", ["run", "build"], cd: @assets)
+    System.cmd("npm", ["run", "build"], cd: assets_dir())
 
     Logger.info("Frontend build done")
+  end
+
+  defp assets_dir() do
+    Path.join(File.cwd!(), @assets)
   end
 end

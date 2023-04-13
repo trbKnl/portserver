@@ -16,8 +16,12 @@ defmodule Portserver.StorageBackend.LocalStorageSupervisor do
   end
 
   defp poolboy_config() do
-    Application.fetch_env!(:portserver, :local_storage_config)
-    |> Keyword.get(:poolboy_config)
+    [
+      name: {:local, :local_storage_worker},
+      worker_module: Portserver.StorageBackend.LocalStorageWorker,
+      size: 5,
+      max_overflow: 0
+    ]
   end
 
   defp storage_directory() do

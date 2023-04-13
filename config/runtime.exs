@@ -21,18 +21,34 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
+
+  # Configuring the database
+
+  raise_missing_db_vars = fn -> 
       raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
+      One or more of the following environment variables are missing:
+
+      - DB_USER
+      - DB_PASS
+      - DB_HOST
+      - DB_NAME
       """
+  end
+
+  database_url = fn ->
+    username = System.get_env("DB_USER" || raise_missing_db_vars.())
+    password = System.get_env("DB_PASS" || raise_missing_db_vars.())
+    database = System.get_env("DB_NAME" || raise_missing_db_vars.())
+    hostname = System.get_env("DB_HOST" || raise_missing_db_vars.())
+
+    "postgresql://#{username}:#{password}@#{hostname}/#{database}"
+  end
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
   config :portserver, Portserver.Repo,
     # ssl: true,
-    url: database_url,
+    url: database_url.(),
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
     socket_options: maybe_ipv6
 
@@ -112,20 +128,6 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
-
 end
 
-# Local storage backend configuration
-config :portserver, :local_storage_config,
-  storage_directory: "./donated_data",
-  poolboy_config: [
-      name: {:local, :local_storage_worker},
-      worker_module: Portserver.StorageBackend.LocalStorageWorker,
-      size: 5,
-      max_overflow: 0
-  ]
 
-
-# Database storage backend configuration 
-config :portserver, :local_storage_config,
-  cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="
