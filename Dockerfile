@@ -61,12 +61,12 @@ RUN mix deps.compile
 
 COPY . .
 
+# Compile the release
+RUN mix compile
+
 # Build frontend
 RUN mix build_frontend
 RUN mix phx.digest
-
-# Compile the release
-RUN mix compile
 
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
