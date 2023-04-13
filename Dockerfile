@@ -61,12 +61,16 @@ RUN mix deps.compile
 
 COPY . .
 
+# Build frontend
+WORKDIR /app/assets
+RUN npm install 
+RUN npm run build 
+WORKDIR /app
+
+RUN mix phx.digest
+
 # Compile the release
 RUN mix compile
-
-# Build frontend
-RUN mix build_frontend
-RUN mix phx.digest
 
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
