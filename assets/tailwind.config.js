@@ -5,7 +5,6 @@ const fs = require("fs")
 const path = require("path")
 
 module.exports = {
-  //prefix: 'tw-',
   content: [
     "./js/**/*.js",
     "../lib/*_web.ex",

@@ -5,8 +5,7 @@ import { isCommandSystemDonate } from "port/dist/framework/types/commands";
 // Webpack works with loader modules to handle
 // imports with extensions such as .css, .whl, .svg, etc.
 // See webpack.config.js how the different imports are handled
-//
-import "port/dist/styles.css";
+
 import "port/dist/port-0.0.0-py3-none-any.whl";
 import "port/dist/framework/processing/py_worker.js";
 

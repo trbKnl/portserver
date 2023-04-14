@@ -47,13 +47,13 @@ defmodule PortserverWeb.PortLive do
 
   def render(assigns) do
     ~H"""
+    <link rel="stylesheet" href={~p"/assets/portcss.css"}>
     <header class="flex items-center justify-between px-4 py-3 header border-b border-gray-200">
       <img src={~p"/icons/port_wide.svg"} alt="Port" />
       <div>
         <PortserverWeb.Components.LocaleChangeFlag.change_locale locale={@locale} />
       </div>
     </header>
-
     <div class="flex h-screen">
       <div class="m-auto">
         <div

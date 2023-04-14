@@ -5,7 +5,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
-      app:"./js/app.js"
+      app:"./js/app.js",
+      portcss:"./js/portcss.js"
     },
     output: {
       filename: "[name].js",
