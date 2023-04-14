@@ -62,11 +62,12 @@ RUN mix deps.compile
 COPY . .
 
 # Build frontend
-WORKDIR /app/assets
-RUN npm install 
-RUN npm run build 
-WORKDIR /app
+#WORKDIR /app/assets
+#RUN npm install 
+#RUN npm run build 
+#WORKDIR /app
 
+RUN mix build_frontend
 RUN mix phx.digest
 
 # Compile the release

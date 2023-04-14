@@ -8,7 +8,7 @@ defmodule Mix.Tasks.BuildFrontend do
 
   def run(_) do
     Logger.info("Installing NPM packages")
-    System.cmd("npm", ["install", "--quiet"], cd: assets_dir())
+    System.cmd("npm", ["install"], cd: assets_dir())
 
     Logger.info("Building frontend with Webpack")
     System.cmd("npm", ["run", "build"], cd: assets_dir())
