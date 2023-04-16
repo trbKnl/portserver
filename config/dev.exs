@@ -85,6 +85,7 @@ config :phoenix, :plug_init_mode, :runtime
 config :swoosh, :api_client, false
 
 # Database storage backend configuration 
+# This key is used to encrypt donated data at rest
 config :portserver, :database_storage_config,
   cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="
 

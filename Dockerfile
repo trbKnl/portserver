@@ -101,19 +101,8 @@ ENV MIX_ENV "prod"
 
 # Only copy the final release from the build stage
 COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/portserver ./
+COPY --from=builder --chown=nobody:root /app/scripts/start.sh ./
 
 USER nobody
 
-# Set ennvironment variables
-ENV DB_NAME "dockertest"
-ENV DB_HOST "172.17.0.1"
-ENV DB_USER "postgres"
-ENV DB_PASSWORD "postgres"
-ENV SECRET_KEY_BASE "aUMZobj7oJn58XIlMGVcwTYrCsAllwDCGlwDCGlwDCGwDChdhsjahdghaggdgdGt7MoQYJtJbA="
-ENV PHX_HOST "localhost"
-ENV PORT "8000"
-
-# Initialize database schema's
-RUN /app/bin/migrate
-
-CMD ["/app/bin/server"]
+CMD ["/app/start.sh"]

@@ -128,6 +128,14 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  # Database storage backend configuration 
+  config :portserver, :database_storage_config,
+    cloak_key: System.get_env("CLOAK_KEY") ||
+      raise """
+      environment variable CLOAK_KEY is missing.
+      This key is used to encrypt doanated data at rest 
+      """
 end
 
 

@@ -10,7 +10,6 @@ defmodule Portserver.StorageBackend.Vault do
           tag: "AES.GCM.V1", 
           key: get_encryption_key() |> Base.decode64!() 
         }
-        # default: {Cloak.Ciphers.AES.GCM, tag: "AES.GCM.V1", key: decode_env!("CLOAK_KEY")}
       ])
 
     {:ok, config}
@@ -21,11 +20,6 @@ defmodule Portserver.StorageBackend.Vault do
     |> Keyword.get(:cloak_key)
   end
 
-  #defp decode_env!(var) do
-  #  var
-  #  |> System.get_env()
-  #  |> Base.decode64!()
-  #end
 end
 
 defmodule Portserver.Encrypted.Binary do

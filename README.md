@@ -25,8 +25,29 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Configured Plug.Static differently 
 
 
-| SECRET_KEY_BASE |
-| DB_USER |
-| DB_PASSWORD |
-| DB_HOST |
-| DB_NAME |
+# Set ennvironment variables
+
+| Variable | Descrition |
+|---|---|
+| DB_NAME | name of the postgresql database |
+| DB_HOST | location of the database |
+| DB_USER | database username |
+| DB_PASSWORD | database password |
+| SECRET_KEY_BASE | 64-bit long sequence |
+| PHX_HOST | location of the host  |
+| PORT | port number the app is listening on |
+| CLOAK_KEY | encryption key for donated data if it ends ups in the database |
+
+```
+docker run \
+    -p 8000:8000
+    -e DB_NAME=dockertest \
+    -e DB_HOST=172.17.0.1 \
+    -e DB_USER=postgres \
+    -e DB_PASSWORD=postgres \
+    -e SECRET_KEY_BASE=aUMZobj7oJn58XIlMGVcwTYrCsAllwDCGlwDCGlwDCGwDChdhsjahdghaggdgdGt7MoQYJtJbA= \
+    -e PHX_HOST=localhost \
+    -e PORT=8000 \
+    -e CLOAK_KEY="ljpT3WuKUDPlW36HqdJr8I4yYnDtsteTTzjTNacTWFg=" \
+    Portserver-test:latest
+```
