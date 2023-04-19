@@ -67,7 +67,7 @@ defmodule Portserver.MixProject do
     [
       #setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       setup: ["deps.get", "ecto.setup", "build_frontend"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "seed_database"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],

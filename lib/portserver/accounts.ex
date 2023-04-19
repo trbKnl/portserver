@@ -64,19 +64,16 @@ defmodule Portserver.Accounts do
   ## Admin registration
 
   @doc """
-  Initialize admin account from configuration
+  Initialize admin account
 
-  Based on a configuration check if an admin accounts exist. 
+  Check if an admin accounts exist. 
   If the account does not exists create it.
   In development dev.exs will be used for configuration,
   In production runtime.exs.
   """
 
-  def initialize_admin_from_config() do
-    config = Application.get_env(:portserver, :database_storage_config)
-    email = Keyword.fetch!(config, :admin_email)
-    password = Keyword.fetch!(config, :admin_password)
-
+  def initialize_admin() do
+    {email, password} = get_passwd_and_email_from_config() 
     with nil <- get_admin_by_email_and_password(email, password),
         {:ok, _} <- register_admin(%{email: email, password: password})
     do 
@@ -88,6 +85,13 @@ defmodule Portserver.Accounts do
     end
   end
 
+  defp get_passwd_and_email_from_config() do
+    config = Application.get_env(:portserver, :database_storage_config)
+    email = Keyword.fetch!(config, :admin_email)
+    password = Keyword.fetch!(config, :admin_password)
+
+    {email, password}
+  end
 
   defp log_changeset_errors(changeset) do
     errors = Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
@@ -95,6 +99,7 @@ defmodule Portserver.Accounts do
         opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string() 
       end) 
     end)
+
     Logger.error("Admin could not be configured from configuration: #{inspect errors}")
   end
 

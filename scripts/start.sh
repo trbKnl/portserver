@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Initialize database schema's
-/app/bin/migrate
+/app/bin/portserver eval "Portserver.Release.migrate"
 
 # Start server
-/app/bin/server
+/app/bin/portserver start

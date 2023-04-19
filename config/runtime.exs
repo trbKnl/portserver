@@ -21,18 +21,17 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-
   # Configuring the database
 
-  raise_missing_db_vars = fn -> 
-      raise """
-      One or more of the following environment variables are missing:
+  raise_missing_db_vars = fn ->
+    raise """
+    One or more of the following environment variables are missing:
 
-      - DB_USER
-      - DB_PASS
-      - DB_HOST
-      - DB_NAME
-      """
+    - DB_USER
+    - DB_PASS
+    - DB_HOST
+    - DB_NAME
+    """
   end
 
   database_url = fn ->
@@ -131,11 +130,20 @@ if config_env() == :prod do
 
   # Database storage backend configuration 
   config :portserver, :database_storage_config,
-    cloak_key: System.get_env("CLOAK_KEY") ||
-      raise """
-      environment variable CLOAK_KEY is missing.
-      This key is used to encrypt doanated data at rest 
-      """
+    cloak_key:
+      System.get_env("CLOAK_KEY") ||
+        raise( """
+          environment variable CLOAK_KEY is missing.
+          This key is used to encrypt doanated data at rest 
+        """),
+    admin_email:
+      System.get_env("ADMIN_EMAIL") ||
+        raise( """
+          environment variable ADMIN_PASSWORD is missing.
+        """),
+    admin_password:
+      System.get_env("ADMIN_PASSWORD") ||
+        raise("""
+          environment variable ADMIN_PASSWORD is missing.
+        """)
 end
-
-

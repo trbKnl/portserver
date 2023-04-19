@@ -11,6 +11,10 @@ defmodule Portserver.Release do
     for repo <- repos() do
       {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
     end
+
+    # Initialize admin account
+    {:ok, _} = Application.ensure_all_started(:portserver)
+    Portserver.Accounts.initialize_admin()
   end
 
   def rollback(repo, version) do

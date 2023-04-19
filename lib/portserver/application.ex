@@ -27,12 +27,7 @@ defmodule Portserver.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Portserver.Supervisor]
-    {:ok, pid} = Supervisor.start_link(children, opts)
-
-    # Code that is supposed to run once right after application is started
-    Portserver.Accounts.initialize_admin_from_config()
-
-    {:ok, pid}
+    Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration

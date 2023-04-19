@@ -29,10 +29,12 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 | CLOAK_KEY | Encryption key for donated data if it ends ups in the database |
 | PHX_HOST | Hostname |
 | PORT | Port the app is listening on |
+| ADMIN_EMAIL | email address of the admin |
+| ADMIN_PASSWORD | password of the admin |
 
 ```
 docker run \
-    -p 8000:8000
+    -p 8000:8000 \
     -e DB_NAME=dockertest \
     -e DB_HOST=172.17.0.1 \
     -e DB_USER=postgres \
@@ -41,5 +43,7 @@ docker run \
     -e PHX_HOST=localhost \
     -e PORT=8000 \
     -e CLOAK_KEY="ljpT3WuKUDPlW36HqdJr8I4yYnDtsteTTzjTNacTWFg=" \
+    -e ADMIN_PASSWORD="passwordpassword" \
+    -e ADMIN_EMAIL="admin@admin.com" \
     portserver-test:latest
 ```
