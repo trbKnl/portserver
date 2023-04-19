@@ -3,6 +3,7 @@ defmodule Portserver.Accounts do
   The Accounts context.
   """
 
+  require Logger
   import Ecto.Query, warn: false
   alias Portserver.Repo
 
@@ -61,6 +62,41 @@ defmodule Portserver.Accounts do
   def get_admin!(id), do: Repo.get!(Admin, id)
 
   ## Admin registration
+
+  @doc """
+  Initialize admin account from configuration
+
+  Based on a configuration check if an admin accounts exist. 
+  If the account does not exists create it.
+  In development dev.exs will be used for configuration,
+  In production runtime.exs.
+  """
+
+  def initialize_admin_from_config() do
+    config = Application.get_env(:portserver, :database_storage_config)
+    email = Keyword.fetch!(config, :admin_email)
+    password = Keyword.fetch!(config, :admin_password)
+
+    with nil <- get_admin_by_email_and_password(email, password),
+        {:ok, _} <- register_admin(%{email: email, password: password})
+    do 
+      :ok
+    else
+      %Admin{} -> Logger.debug("Admin is already configured")
+      {:error, changeset} -> log_changeset_errors(changeset)
+      err -> Logger.error("Admin could not be configured #{inspect err}")
+    end
+  end
+
+
+  defp log_changeset_errors(changeset) do
+    errors = Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+      Regex.replace(~r"%{(\w+)}", msg, fn _, key -> 
+        opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string() 
+      end) 
+    end)
+    Logger.error("Admin could not be configured from configuration: #{inspect errors}")
+  end
 
   @doc """
   Registers a admin.

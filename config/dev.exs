@@ -84,10 +84,17 @@ config :phoenix, :plug_init_mode, :runtime
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 
+########################################################################
+# Storage configuration
+# These configurations are only used in development
+
 # Database storage backend configuration 
-# This key is used to encrypt donated data at rest
 config :portserver, :database_storage_config,
-  cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="
+  # This key is used to encrypt donated data at rest
+  cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE=",
+  # Admin email and password are used to log in to the admin panel
+  admin_email: "admin@admin.com",
+  admin_password: "passwordpassword"
 
 # Portserver specific configuration
 # Local storage backend configuration

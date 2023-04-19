@@ -17,26 +17,18 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
 
-## Notes: deviations from Next
-
-  * Added: phx-update="ignore" in React component 
-  * Upgraded to webpack 5 with changed bare minimum build config
-  * Changed `port.js` to handle new sytnax for webworkers
-  * Configured Plug.Static differently 
-
-
 # Set ennvironment variables
 
 | Variable | Descrition |
 |---|---|
-| DB_NAME | name of the postgresql database |
-| DB_HOST | location of the database |
-| DB_USER | database username |
-| DB_PASSWORD | database password |
+| DB_NAME | Name of the postgresql database |
+| DB_HOST | Location of the database (hostname) |
+| DB_USER | Database username |
+| DB_PASSWORD | Database password |
 | SECRET_KEY_BASE | 64-bit long sequence |
-| PHX_HOST | location of the host  |
-| PORT | port number the app is listening on |
-| CLOAK_KEY | encryption key for donated data if it ends ups in the database |
+| CLOAK_KEY | Encryption key for donated data if it ends ups in the database |
+| PHX_HOST | Hostname |
+| PORT | Port the app is listening on |
 
 ```
 docker run \
@@ -49,5 +41,5 @@ docker run \
     -e PHX_HOST=localhost \
     -e PORT=8000 \
     -e CLOAK_KEY="ljpT3WuKUDPlW36HqdJr8I4yYnDtsteTTzjTNacTWFg=" \
-    Portserver-test:latest
+    portserver-test:latest
 ```

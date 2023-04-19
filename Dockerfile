@@ -18,7 +18,6 @@
 #
 # * Added nodejs as dependency
 # * Frontend is build differently
-# * Initialized database schema's
 
 ARG ELIXIR_VERSION=1.14.2
 ARG OTP_VERSION=25.0.4
@@ -61,12 +60,7 @@ RUN mix deps.compile
 
 COPY . .
 
-# Build frontend
-#WORKDIR /app/assets
-#RUN npm install 
-#RUN npm run build 
-#WORKDIR /app
-
+# Build frontent
 RUN mix build_frontend
 RUN mix phx.digest
 
@@ -76,7 +70,7 @@ RUN mix compile
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
 
-COPY rel rel
+# COPY rel rel
 RUN mix release
 
 # start a new build stage so that the final image will only contain
