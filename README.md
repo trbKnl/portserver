@@ -1,12 +1,12 @@
 # Portserver
 
-In this repository you will find a backend for (port)[https://github.com/eyra/port]. 
+In this repository you will find a backend for [port](https://github.com/eyra/port).
 The main purpose of this repository is to provide the user with a basic backend that could be used to 
 to deploy port. 
 
 This backend handles:
 
-1. The serving of a `port` app (created by forking (`port`)[https://github.com/eyra/port], and tailoring to your own needs)
+1. The serving of a `port` app (created by forking [port](https://github.com/eyra/port)), and tailoring to your own needs)
 2. Handles the storing of the data
 
 ## Features
@@ -28,7 +28,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Portserver architecture
 
-<img title="Portserver architecture" src="/resources/portserver_arch">
+<img title="Portserver architecture" src="/resources/portserver_arch.svg">
 
 ## Learn more
 
