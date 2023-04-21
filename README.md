@@ -1,5 +1,22 @@
 # Portserver
 
+In this repository you will find a backend for (port)[https://github.com/eyra/port]. 
+The main purpose of this repository is to provide the user with a basic backend that could be used to 
+to deploy port. 
+
+This backend handles:
+
+1. The serving of a `port` app (created by forking (`port`)[https://github.com/eyra/port], and tailoring to your own needs)
+2. Handles the storing of the data
+
+## Features
+
+This backend provides:
+
+1. Donated data gets stored data locally when run in development mode. This allows for immediate inspection (your own) donated data so you can perform very small local data donation yourself.
+2. Donated data gets store encrypted (at rest) in a database. This is a generic solution that can be implemented anywhere: on-premise and in the cloud. A single admin account is created that is allowed to log in onto the server and can export all donated data.
+
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
@@ -8,6 +25,10 @@ To start your Phoenix server:
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+
+## Portserver architecture
+
+<img title="Portserver architecture" src="/resources/portserver_arch">
 
 ## Learn more
 
