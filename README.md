@@ -1,21 +1,35 @@
 # Portserver
 
-In this repository you will find a backend for [port](https://github.com/eyra/port).
+In this repository you will find a backend for [`port`](https://github.com/eyra/port).
 The main purpose of this repository is to provide the user with a basic backend that could be used to 
-to deploy port. 
+to deploy `port`. 
 
 This backend handles:
 
-1. The serving of a `port` app (created by forking [port](https://github.com/eyra/port)), and tailoring to your own needs)
+1. The serving of a `port` app (created by forking [`port`](https://github.com/eyra/port)), and tailoring to your own needs)
 2. Handles the storing of the data
 
 ## Features
 
-This backend provides:
+The `portserver` backend provides:
 
-1. Donated data gets stored data locally when run in development mode. This allows for immediate inspection (your own) donated data so you can perform very small local data donation yourself.
-2. Donated data gets store encrypted (at rest) in a database. This is a generic solution that can be implemented anywhere: on-premise and in the cloud. A single admin account is created that is allowed to log in onto the server and can export all donated data.
+1. *A means to store donated data locally when developing* 
 
+Donated data gets stored data locally when `portserver` is run in development mode. This allows for immediate inspection (your own) donated data so you can perform very small local data donation yourself.
+
+2. *A means to store data encrypted in a postgresql database* 
+
+Donated data will also get store encrypted (at rest) in a database (in development and in production mode). This is a generic solution that can be implemented anywhere: on-premise and in the cloud. A single admin account is created that is allowed to log in onto the server and can export all donated data.
+
+## Installation
+
+In order to build and/or run `portserver` (a Phoenix application), you will need a few dependencies installed:
+
+    * the Erlang VM and the Elixir programming language. To install Elixir and Erlang, follow these [instruction](https://elixir-lang.org/install.html). They will be different depending on your operating system. You will also need the Elixir package manager (`hex`) as well. To install `hex` run `mix local.hex`.
+    * a PostgreSQL database. See for example [windows instructions](https://www.postgresql.org/download/windows/), [arch linux](https://wiki.archlinux.org/title/PostgreSQL) or [Mac OS X](https://wiki.postgresql.org/wiki/Homebrew). A postgresql user needs to be configured with username: postgresl and password: postgres.
+
+
+Make sure to install anything necessary for your system. Having dependencies installed in advance can prevent frustrating problems later on.
 
 To start your Phoenix server:
 
@@ -28,7 +42,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Portserver architecture
 
-<img width="300px" title="Portserver architecture" src="/resources/portserver_arch.svg">
+<img width="600px" title="Portserver architecture" src="/resources/portserver_arch.svg">
 
 ## Learn more
 
