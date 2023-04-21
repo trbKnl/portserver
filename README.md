@@ -28,7 +28,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Portserver architecture
 
-<img title="Portserver architecture" src="/resources/portserver_arch.svg">
+<img width="300px" title="Portserver architecture" src="/resources/portserver_arch.svg">
 
 ## Learn more
 
