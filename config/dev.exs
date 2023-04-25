@@ -100,3 +100,7 @@ config :portserver, :database_storage_config,
 # Local storage backend configuration
 config :portserver, :local_storage_config,
   storage_directory: "./donated_data"
+
+# Method of storing data
+config :portserver, :storage_method,
+  method: Portserver.StorageBackend.Development

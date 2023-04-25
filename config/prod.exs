@@ -20,11 +20,6 @@ config :logger, level: :info
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
 
-# Database storage backend configuration 
-config :portserver, :database_storage_config,
-  cloak_key: "swUo//sEExnV6VcK4TtSmKWSjQj5RWZSSzCpRlYCcjE="
-
-# Portserver specific configuration
-# Local storage backend configuration
-config :portserver, :local_storage_config,
-  storage_directory: "./donated_data"
+# Method of storing data
+config portserver, :storage_method,
+  method: Portserver.StorageBackend.DatabaseStorage
