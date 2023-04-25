@@ -37,7 +37,7 @@ In order to build and/or run portserver (a Phoenix application) locally, you wil
 
 Make sure to install anything necessary for your system. Having dependencies installed in advance can prevent frustrating problems later on.
 
-### Start portserver locally
+### Install portserver to run it locally
 
 After dependencies are installed you can do:
 
@@ -54,7 +54,7 @@ mix setup
 Start Phoenix endpoint with `mix phx.server`. 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-### Install your own `port` instance
+### Install your own port instance
 
 In order to include your own port instance with this server: 
 change `"port": "github:trbKnl/port"` to `"port": "github:<your-repo>/<your-clone-of-port>" in `/assets/package.json`.
@@ -67,20 +67,18 @@ If the installation went well, you should be greeted with the Phoenix startscree
 
 ### Routes
 
-#### `/`
+* `/` 
 
-The standard Phoenix page is hosted at `/`. Change it if you so desire.
+Hosts the standard Phoenix welcome page. Change it if you so desire.
 
-#### `/port/<participant-identifier>`
+* `/port/<participant-identifier>` 
 
 Your port app should be running at `/port/<participant-id>`. <participant-id> can be any alpha numeric string.
 
-#### `/admins/login_in`
+* `/admins/login_in`: Port is configured with a single admin account: 
 
-Port is configured with a single admin account: 
-
-* email: admin@admin.com
-* password: passwordpassword
+email: admin@admin.com
+password: passwordpassword
 
 ## Portserver architecture
 
