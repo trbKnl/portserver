@@ -16,7 +16,7 @@ config :portserver, PortserverWeb.Endpoint,
     formats: [html: PortserverWeb.ErrorHTML, json: PortserverWeb.ErrorJSON],
     layout: false
   ],
-  server: true,
+  server: false,
   pubsub_server: Portserver.PubSub,
   live_view: [signing_salt: "i3PDtBls"]
 

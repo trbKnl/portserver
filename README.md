@@ -1,8 +1,10 @@
 # Portserver
 
 In this repository you will find a backend for [`port`](https://github.com/eyra/port).
-The main purpose of this repository is to provide the user with a basic backend that could be used to 
-to deploy `port`. 
+The main purpose of this repository is to provide the user with a basic backend that could be used:
+
+* to play around with [`port`](https://github.com/eyra/port) including a backend.
+* to deploy `port` using a database a storage solution for donated data
 
 This backend handles:
 
@@ -23,22 +25,31 @@ Donated data will also get store encrypted (at rest) in a database (in developme
 
 ## Installation
 
-In order to build and/or run `portserver` (a Phoenix application), you will need a few dependencies installed:
+### Prerequisites
 
-    * the Erlang VM and the Elixir programming language. To install Elixir and Erlang, follow these [instruction](https://elixir-lang.org/install.html). They will be different depending on your operating system. You will also need the Elixir package manager (`hex`) as well. To install `hex` run `mix local.hex`.
-    * a PostgreSQL database. See for example [windows instructions](https://www.postgresql.org/download/windows/), [arch linux](https://wiki.archlinux.org/title/PostgreSQL) or [Mac OS X](https://wiki.postgresql.org/wiki/Homebrew). A postgresql user needs to be configured with username: postgresl and password: postgres.
+In order to build and/or run `portserver`(a Phoenix application) locally, you will need a few dependencies installed:
 
+* the Erlang VM and the Elixir programming language. To install Elixir and Erlang, follow these [instruction](https://elixir-lang.org/install.html). They will be different depending on your operating system. You will also need the Elixir package manager (`hex`) as well. To install `hex` run `mix local.hex`.
+
+* a PostgreSQL database. See for example [windows instructions](https://www.postgresql.org/download/windows/), [arch linux](https://wiki.archlinux.org/title/PostgreSQL) or [Mac OS X](https://wiki.postgresql.org/wiki/Homebrew). A postgresql user needs to be configured with username: postgres and password: postgres.
+
+* Nodejs and `npm` must be installed 
 
 Make sure to install anything necessary for your system. Having dependencies installed in advance can prevent frustrating problems later on.
 
-To start your Phoenix server:
+### Start `portserver` locally in development mode
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+After dependencies are installed you can do:
 
+```
+git clone https://github.com/trbKnl/portserver.git
+cd portserver  # Change directory to the newly created project 
+mix setup      # Installs dependencies, initializes database, builds frontend (see mix.exs)
+```
+
+Start Phoenix endpoint with `mix phx.server`. 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
 ## Portserver architecture
 
