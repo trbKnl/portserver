@@ -3,13 +3,13 @@
 In this repository you will find a backend for [port](https://github.com/eyra/port).
 The main purpose of this repository is to provide the user with a basic backend that could be used to:
 
-* play around with [port](https://github.com/eyra/port) including a backend.
+* play around with a backend for port
 * deploy port using a database as a storage solution for donated data
 
 This backend handles:
 
-1. The serving of a port app (created by forking [port](https://github.com/eyra/port)), and tailoring to your own needs)
-2. Handles the storage of the data
+1. The serving of a port app (created by cloning or forking [port](https://github.com/eyra/port)), and tailoring it to your own needs)
+2. The storage of donated data
 
 ## Features
 
