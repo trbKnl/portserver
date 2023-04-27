@@ -13,7 +13,7 @@ This backend handles:
 
 ## Features
 
-The portserver backend provides:
+Portserver provides 2 main features:
 
 1. *A means to store donated data locally when developing* 
 
@@ -67,18 +67,17 @@ If the installation went well, you should be greeted with the Phoenix startscree
 
 ### Routes
 
-* `/` 
+`/` 
 
 Hosts the standard Phoenix welcome page. Change it if you so desire.
 
-* `/port/<participant-identifier>` 
+`/port/<participant-id>` 
 
 Your port app should be running at `/port/<participant-id>`. <participant-id> can be any alpha numeric string.
 
-* `/admins/login_in`: Port is configured with a single admin account: 
+`/admins/login_in`
 
-email: admin@admin.com
-password: passwordpassword
+Port is configured with a single admin account. In development you can log in with email: `admin@admin.com` with password: `passwordpassword`.
 
 ## Portserver architecture
 
