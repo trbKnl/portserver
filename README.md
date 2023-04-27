@@ -57,19 +57,19 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ### Install your own port instance
 
 In order to include your own port instance with this server: 
-change `"port": "github:trbKnl/port"` to `"port": "github:<your-repo>/<your-clone-of-port>" in `/assets/package.json`.
+change `"port": "github:trbKnl/port"` to `"port": "github:<your-repo>/<your-clone-of-port>"` in `./assets/package.json`.
 
-If you already installed the dependencies don't forget to build the frontend again (in `/assets/` run `npm install`).
+If you already installed the dependencies don't forget to build the frontend again (in `./assets` run `npm install`).
 
-## Running port
+## Running portserver
 
-If the installation went well, you should be greeted with the Phoenix startscreen served at "/"
+Start portserver with `mix phx.server`. If the installation went well, you should be greeted with the Phoenix welcome screen served at "/"
 
 ### Routes
 
 | URL | Description |
 | --- | ----------- |
-| `/` | Hosts the standard Phoenix welcome page. Change it if you so desire. |
+| `/` | Hosts the standard Phoenix welcome page. Change it to something else if you want. |
 | `/port/<participant-id>` | Your port app should be running at `/port/<participant-id>`. `<participant-id>` can be any alpha numeric string. |
 | `/admins/login_in` | Port is configured with a single admin account. In development you can log in with email: `admin@admin.com` with password: `passwordpassword`. |
 
