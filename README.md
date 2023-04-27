@@ -82,6 +82,7 @@ In the figure you can see the portserver architecture.
 1. Port is served to the participant and runs locally in the device of the participant
 2. Participant decides to donate, data gets send back to the server
 3. Data gets stored in encrypted at rest in a PostgreSQL database. If run in development mode the data is also stored in a folder `./donated_data`.
+4. The research can log in using the admin account and can export all donated data
 
 
 # Portserver in a Docker container
