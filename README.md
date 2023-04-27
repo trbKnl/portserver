@@ -67,17 +67,12 @@ If the installation went well, you should be greeted with the Phoenix startscree
 
 ### Routes
 
-`/` 
 
-Hosts the standard Phoenix welcome page. Change it if you so desire.
-
-`/port/<participant-id>` 
-
-Your port app should be running at `/port/<participant-id>`. <participant-id> can be any alpha numeric string.
-
-`/admins/login_in`
-
-Port is configured with a single admin account. In development you can log in with email: `admin@admin.com` with password: `passwordpassword`.
+| URL | Description |
+| --- | ----------- |
+| `/` | Hosts the standard Phoenix welcome page. Change it if you so desire. |
+| `/port/<participant-id>` | Your port app should be running at `/port/<participant-id>`. `<participant-id>` can be any alpha numeric string. |
+| `/admins/login_in` | Port is configured with a single admin account. In development you can log in with email: `admin@admin.com` with password: `passwordpassword`. |
 
 ## Portserver architecture
 
