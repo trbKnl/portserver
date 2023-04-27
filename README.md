@@ -67,7 +67,6 @@ If the installation went well, you should be greeted with the Phoenix startscree
 
 ### Routes
 
-
 | URL | Description |
 | --- | ----------- |
 | `/` | Hosts the standard Phoenix welcome page. Change it if you so desire. |
@@ -76,9 +75,16 @@ If the installation went well, you should be greeted with the Phoenix startscree
 
 ## Portserver architecture
 
+In the figure you can see the portserver architecture.
+
 <img width="600px" title="Portserver architecture" src="/resources/portserver_arch.svg">
 
-# Set ennvironment variables
+1. Port is served to the participant and runs locally in the device of the participant
+2. Participant decides to donate, data gets send back to the server
+3. Data gets stored in encrypted at rest in a PostgreSQL database. If run in development mode the data is also stored in a folder `./donated_data`.
+
+
+# Portserver in a Docker container
 
 | Variable | Descrition |
 |---|---|
