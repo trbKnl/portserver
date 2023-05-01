@@ -19,9 +19,18 @@ Portserver provides 2 main features:
 
 Donated data gets stored data locally when portserver is run in development mode. This allows for immediate inspection (your own) donated data so you can perform very small local data donation yourself.
 
-2. *A means to store data encrypted in a postgresql database* 
+2. *A means to store data encrypted in a Postgresql database* 
 
 Donated data will also get store encrypted (at rest) in a database (in development and in production mode). This is a generic solution that can be implemented anywhere: on-premise and in the cloud. A single admin account is created that is allowed to log in onto the server and can export all donated data.
+
+In the figure below you can see a diagram of the portserver architecture.
+
+<img width="600px" title="Portserver architecture" src="/resources/portserver_arch.svg">
+
+1. Port is served and runs locally in the device of the participant
+2. If the participant decides to donate data gets send back to the server
+3. Data gets stored in encrypted at rest in a PostgreSQL database. If run in development mode the data is also stored in a folder `./donated_data`.
+4. The researcher can log in using the admin account and can export all donated data
 
 ## Installation
 
@@ -39,7 +48,7 @@ Make sure to install anything necessary for your system. Having dependencies ins
 
 ### Install portserver to run it locally
 
-After dependencies are installed you can do:
+After the prerequisites are installed, run:
 
 ```
 git clone https://github.com/trbKnl/portserver.git
@@ -51,55 +60,61 @@ cd portserver
 mix setup      
 ```
 
-Start Phoenix endpoint with `mix phx.server`. 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-### Install your own port instance
+### Install your own instance of port
 
 In order to include your own port instance with this server: 
 change `"port": "github:trbKnl/port"` to `"port": "github:<your-repo>/<your-clone-of-port>"` in `./assets/package.json`.
 
-If you already installed the dependencies don't forget to build the frontend again (in `./assets` run `npm install`).
+Don't forget to build the frontend again (in `./assets` run `npm install`).
 
-## Running portserver
+### Start portserver
+
+Start Phoenix endpoint with `mix phx.server`. 
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Start portserver with `mix phx.server`. If the installation went well, you should be greeted with the Phoenix welcome screen served at "/"
 
+## Running portserver
+
 ### Routes
+
+Portserver provides the following routes:
 
 | URL | Description |
 | --- | ----------- |
 | `/` | Hosts the standard Phoenix welcome page. Change it to something else if you want. |
 | `/port/<participant-id>` | Your port app should be running at `/port/<participant-id>`. `<participant-id>` can be any alpha numeric string. |
 | `/admins/login_in` | Port is configured with a single admin account. In development you can log in with email: `admin@admin.com` with password: `passwordpassword`. |
+| `/admin` | The admin panel where you can export donated data |
 
-## Portserver architecture
+### Portserver in production
 
-In the figure you can see the portserver architecture.
-
-<img width="600px" title="Portserver architecture" src="/resources/portserver_arch.svg">
-
-1. Port is served to the participant and runs locally in the device of the participant
-2. Participant decides to donate, data gets send back to the server
-3. Data gets stored in encrypted at rest in a PostgreSQL database. If run in development mode the data is also stored in a folder `./donated_data`.
-4. The research can log in using the admin account and can export all donated data
-
-
-# Portserver in a Docker container
+When run in production portserver needs to be configured, this is done using environmental variables.
+The following environmental variables need to be set:
 
 | Variable | Descrition |
 |---|---|
-| DB_NAME | Name of the postgresql database |
-| DB_HOST | Location of the database (hostname) |
+| DB_NAME | Name of the Postgresql database |
+| DB_HOST | Location of the database (hostname or domain) |
 | DB_USER | Database username |
 | DB_PASSWORD | Database password |
-| SECRET_KEY_BASE | 64-bit long sequence |
-| CLOAK_KEY | Encryption key for donated data if it ends ups in the database |
-| PHX_HOST | Hostname |
-| PHX_SERVER | Start the app with the server, set to true |
+| SECRET_KEY_BASE | a sequence of characters of length 65, this sequence is used by Phoenix to encrypt cookies |
+| CLOAK_KEY | a sequence of characters of length 32, this is the encryption key that encrypts donated data at rest |
+| PHX_HOST | Domain name of the server |
+| PHX_SERVER | Start the app with the server. Set to "true". |
 | PORT | Port the app is listening on |
-| ADMIN_EMAIL | email address of the admin |
-| ADMIN_PASSWORD | password of the admin |
+| ADMIN_EMAIL | email address of the admin, this is used to log in to the admin panel |
+| ADMIN_PASSWORD | password of the admin, this is used to log in to the admin panel |
+
+### Portserver as a container
+
+This repository includes a Dockerfile, which can be used to package portserver as a container. 
+See the Dockerfile for the details.
+
+Below is an example a `docker run` command to start a portserver container called `portserver-test:latest`. 
+This example shows how the environmental variables could be set.
+This specific command runs a docker container locally, with a Postgresql database also running locally.
+This example assumes that the Postgresql is already configured (which would also most likely be the case in a production environment).
 
 ```
 docker run \
@@ -117,3 +132,4 @@ docker run \
     -e ADMIN_EMAIL="admin@admin.com" \
     portserver-test:latest
 ```
+
