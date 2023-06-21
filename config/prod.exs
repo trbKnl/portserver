@@ -23,3 +23,8 @@ config :logger, level: :info
 # Method of storing data
 config :portserver, :storage_method,
   method: Portserver.StorageBackend.DatabaseStorage
+
+# Portserver specific configuration
+# Local storage backend configuration
+config :portserver, :local_storage_config,
+  storage_directory: "./donated_data"
