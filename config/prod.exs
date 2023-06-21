@@ -21,5 +21,5 @@ config :logger, level: :info
 # of environment variables, is done on config/runtime.exs.
 
 # Method of storing data
-config portserver, :storage_method,
+config :portserver, :storage_method,
   method: Portserver.StorageBackend.DatabaseStorage
