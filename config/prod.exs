@@ -20,11 +20,15 @@ config :logger, level: :info
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
 
-# Method of storing data
-config :portserver, :storage_method,
-  method: Portserver.StorageBackend.DatabaseStorage
-
-# Portserver specific configuration
 # Local storage backend configuration
 config :portserver, :local_storage_config,
   storage_directory: "./donated_data"
+
+# Method of storing data
+#
+# This configuration will determine which 
+# Storage method is used in production
+# The module that does the storing should implement the store behaviour
+config :portserver, :storage_method,
+  method: Portserver.StorageBackend.DatabaseStorage
+

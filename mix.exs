@@ -54,6 +54,8 @@ defmodule Portserver.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:poolboy, "~> 1.5"},
+      {:httpoison, "~> 2.1"},
+      {:sweet_xml, "~> 0.7.3"},
     ]
   end
 
