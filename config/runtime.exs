@@ -34,22 +34,14 @@ if config_env() == :prod do
     """
   end
 
-  database_url = fn ->
-    username = System.get_env("DB_USER" || raise_missing_db_vars.())
-    password = System.get_env("DB_PASS" || raise_missing_db_vars.())
-    database = System.get_env("DB_NAME" || raise_missing_db_vars.())
-    hostname = System.get_env("DB_HOST" || raise_missing_db_vars.())
-
-    "postgresql://#{username}:#{password}@#{hostname}/#{database}"
-  end
+  config :portserver, Portserver.Repo,
+    username: System.get_env("DB_USER" || raise_missing_db_vars.()),
+    password: System.get_env("DB_PASS" || raise_missing_db_vars.()),
+    hostname: System.get_env("DB_HOST" || raise_missing_db_vars.()),
+    database: System.get_env("DB_NAME" || raise_missing_db_vars.()),
+    pool_size: 10
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
-
-  config :portserver, Portserver.Repo,
-    # ssl: true,
-    url: database_url.(),
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
