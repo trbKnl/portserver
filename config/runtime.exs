@@ -39,6 +39,7 @@ if config_env() == :prod do
     password: System.get_env("DB_PASS" || raise_missing_db_vars.()),
     hostname: System.get_env("DB_HOST" || raise_missing_db_vars.()),
     database: System.get_env("DB_NAME" || raise_missing_db_vars.()),
+    show_sensitive_data_on_connection_error: true,
     pool_size: 10
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
