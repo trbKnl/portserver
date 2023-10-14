@@ -97,7 +97,7 @@ The following environmental variables need to be set:
 | DB_NAME | Name of the Postgresql database |
 | DB_HOST | Location of the database (hostname or domain) |
 | DB_USER | Database username |
-| DB_PASSWORD | Database password |
+| DB_PASS | Database password |
 | SECRET_KEY_BASE | a sequence of characters of length 65, this sequence is used by Phoenix to encrypt cookies |
 | CLOAK_KEY | a sequence of characters of length 32, this is the encryption key that encrypts donated data at rest |
 | PHX_HOST | Domain name of the server |
@@ -122,7 +122,7 @@ docker run \
     -e DB_NAME=dockertest \
     -e DB_HOST=172.17.0.1 \
     -e DB_USER=postgres \
-    -e DB_PASSWORD=postgres \
+    -e DB_PASS=postgres \
     -e SECRET_KEY_BASE=aUMZobj7oJn58XIlMGVcwTYrCsAllwDCGlwDCGlwDCGwDChdhsjahdghaggdgdGt7MoQYJtJbA= \
     -e PHX_HOST=localhost \
     -e PHX_SERVER=true \
