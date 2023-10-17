@@ -27,6 +27,7 @@ defmodule PortserverWeb.PortLive do
           class="h-full"
           id="port"
           phx-hook="Port"
+          phx-update="ignore"
           data-locale={@locale}
           data-participant={@participant_id}
         />
