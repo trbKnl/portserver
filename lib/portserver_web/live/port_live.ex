@@ -30,7 +30,6 @@ defmodule PortserverWeb.PortLive do
           data-locale={@locale}
           data-participant={@participant_id}
         />
-        <PortserverWeb.Components.Spinner.spinner id="port_loader" />
       </div>
     </div>
     """
