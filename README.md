@@ -1,15 +1,17 @@
 # Portserver
 
-In this repository you will find a backend for [port](https://github.com/eyra/port).
+In this repository you will find a backend for [port](https://github.com/eyra/port) version 1 as used in the port-pilot.
 The main purpose of this repository is to provide the user with a basic backend that could be used to:
 
-* play around with a backend for port
-* deploy port using a database as a storage solution for donated data
+* Have a simple and basic means to deploy port v1 if the need ever arises
+* Play around with a backend for port
+* Have a testing backend for Port
 
 This backend handles:
 
-1. The serving of a port app (created by cloning or forking [port](https://github.com/eyra/port)), and tailoring it to your own needs)
+1. The serving of a Port app (created by cloning or forking [port](https://github.com/eyra/port)), and tailoring it to your own needs)
 2. The storage of donated data
+
 
 ## Features
 
@@ -19,11 +21,13 @@ Portserver provides 2 main features:
 
 Donated data gets stored data locally when portserver is run in development mode. This allows for immediate inspection (your own) donated data so you can perform very small local data donation yourself.
 
-2. *A means to store data encrypted in a Postgresql database* 
+2. *A means to store data somewhere else when in production
 
-Donated data will also get store encrypted (at rest) in a database (in development and in production mode). This is a generic solution that can be implemented anywhere: on-premise and in the cloud. A single admin account is created that is allowed to log in onto the server and can export all donated data.
+** Database **
 
-In the figure below you can see a diagram of the portserver architecture.
+Donated data can be store encrypted (at rest) in a database. This is a generic solution that can be implemented anywhere: on-premise and in the cloud. A single admin account is created that is allowed to log in onto the server and can export all donated data.
+
+In the figure below you can see a diagram of this solution.
 
 <img width="600px" title="Portserver architecture" src="/resources/portserver_arch.svg">
 
@@ -31,6 +35,14 @@ In the figure below you can see a diagram of the portserver architecture.
 2. If the participant decides to donate data gets send back to the server
 3. Data gets stored in encrypted at rest in a PostgreSQL database. If run in development mode the data is also stored in a folder `./donated_data`.
 4. The researcher can log in using the admin account and can export all donated data
+
+** Yoda **
+
+Donated data can be send to Yoda
+
+** Azure **
+
+Donated data can be send to an Azure Storage account
 
 ## Installation
 
@@ -87,9 +99,13 @@ Portserver provides the following routes:
 | `/admins/login_in` | Port is configured with a single admin account. In development you can log in with email: `admin@admin.com` with password: `passwordpassword`. |
 | `/admin` | The admin panel where you can export donated data |
 
-### Portserver in production
+## Running portserver in production
 
-When run in production portserver needs to be configured, this is done using environmental variables.
+This is untested and not recommended but it should function, and it might be used in the future.
+
+### Portserver Docker example
+
+When run in production portserver needs to be configured this is done using environmental variables.
 The following environmental variables need to be set:
 
 | Variable | Descrition |
