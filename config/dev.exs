@@ -104,3 +104,9 @@ config :portserver, :local_storage_config,
 # Method of storing data
 config :portserver, :storage_method,
   method: Portserver.StorageBackend.Development
+
+# Yoda dev configuration
+config :portserver, :yoda_storage_config,
+  url: "https://fsw.data.uu.nl/research-d3i-data-donation/",
+  password: "ASDASDASD",
+  username: "n.c.deschipper@uva.nl"

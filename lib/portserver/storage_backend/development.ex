@@ -4,10 +4,11 @@ defmodule Portserver.StorageBackend.Development do
   """
 
   alias Portserver.StorageBackend.LocalStorage
+  alias Portserver.StorageBackend.YodaStorage
 
   @behaviour Portserver.StorageBackend.Behaviour
   def store(participant_id, donation_id, data) do
-    LocalStorage.store(participant_id, donation_id, data)
+    YodaStorage.store(participant_id, donation_id, data)
   end
 
 end
