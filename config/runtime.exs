@@ -130,10 +130,6 @@ if config_env() == :prod do
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 
-  config = Application.get_env(:portserver, :storage_method)
-  storage_method =  config[:method]
-
-  # Database storage backend configuration 
   config :portserver, :database_storage_config,
     cloak_key:
       System.get_env("CLOAK_KEY") ||
@@ -152,6 +148,16 @@ if config_env() == :prod do
           environment variable ADMIN_PASSWORD is missing.
         """)
 
+  # Storage backend specific settings
+  # Possible storage backends
+  #
+  # - Portserver.StorageBackend.YodaStorage
+  # - Portserver.StorageBackend.DatabaseStorage
+  # - Portserver.StorageBackend.LocalStorage
+
+  config = Application.get_env(:portserver, :storage_method)
+  storage_method =  config[:method]
+
   # Yoda storage backend configuration
   if storage_method == Portserver.StorageBackend.YodaStorage do
     config :portserver, :yoda_storage_config,
@@ -159,7 +165,7 @@ if config_env() == :prod do
         System.get_env("YODA_URL") ||
           raise( """
             environment variable YODA_URL is missing.
-            example: https://url.to.yoda.instance.com/my-repo/
+            example: https://facultyabreviation.data.universityabreviation.tld/my-repo/
           """),
       username:
         System.get_env("YODA_USERNAME") ||
