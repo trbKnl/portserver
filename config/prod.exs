@@ -30,5 +30,4 @@ config :portserver, :local_storage_config,
 # Storage method is used in production
 # The module that does the storing should implement the store behaviour
 config :portserver, :storage_method,
-  method: Portserver.StorageBackend.YodaStorage
-
+  method: Portserver.StorageBackend.AzureStorage

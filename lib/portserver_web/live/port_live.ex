@@ -6,7 +6,7 @@ defmodule PortserverWeb.PortLive do
         _session,
         socket
       ) do
-    {:ok, assign(socket, locale: "nl", participant_id: participant_id), layout: false}
+    {:ok, assign(socket, locale: "en", participant_id: participant_id), layout: false}
   end
 
   attr :locale, :string, required: true

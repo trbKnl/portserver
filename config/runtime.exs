@@ -77,7 +77,6 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    check_origin: [origin],
     secret_key_base: secret_key_base
 
   # ## SSL Support
@@ -154,6 +153,7 @@ if config_env() == :prod do
   # - Portserver.StorageBackend.YodaStorage
   # - Portserver.StorageBackend.DatabaseStorage
   # - Portserver.StorageBackend.LocalStorage
+  # - Portserver.StorageBackend.AzureStorageBackend
 
   config = Application.get_env(:portserver, :storage_method)
   storage_method =  config[:method]
@@ -177,5 +177,16 @@ if config_env() == :prod do
           raise("""
             environment variable YODA_PASSWORD is missing.
           """)
+  end
+
+  # Azure storage backend
+  if storage_method == Portserver.StorageBackend.AzureStorage do
+    config :portserver, :azure_storage_config,
+      storage_account_name:
+        System.get_env("STORAGE_ACCOUNT_NAME") || raise("STORAGE_ACCOUNT_NAME missing"),
+      container:
+        System.get_env("CONTAINER_NAME") || raise("CONTAINER_NAME missing"),
+      sas_token:
+        System.get_env("SAS_TOKEN") || raise("SAS_TOKEN MISSING")
   end
 end

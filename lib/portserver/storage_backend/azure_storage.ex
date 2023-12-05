@@ -1,4 +1,4 @@
-defmodule Systems.DataDonation.AzureStorageBackend do
+defmodule Portserver.StorageBackend.AzureStorage do
   @behaviour Portserver.StorageBackend.Behaviour
 
   require Logger
@@ -23,6 +23,7 @@ defmodule Systems.DataDonation.AzureStorageBackend do
             :ok
 
           {_, %{status_code: status_code, body: body}} ->
+            Logger.error("status_code=#{status_code},message=#{body}")
             {:error, "status_code=#{status_code},message=#{body}"}
 
           {_, response} ->
@@ -56,6 +57,6 @@ defmodule Systems.DataDonation.AzureStorageBackend do
   end
 
   defp config() do
-    Application.get_env(:core, :azure_storage_backend)
+    Application.get_env(:portserver, :azure_storage_config)
   end
 end
